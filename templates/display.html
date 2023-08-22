@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Event</title>
+    <script>
+        function fetchCurrentEvent() {
+            fetch('/current_event')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('eventString').innerText = data.event_string;
+                    if (data.end_time) {
+                        const endTime = new Date(data.end_time);
+                        const now = new Date();
+                        const delay = endTime - now;
+                        setTimeout(fetchCurrentEvent, delay);
+                    } else {
+                        setTimeout(fetchCurrentEvent, 60000);  // Check every minute if no event is found
+                    }
+                });
+        }
+
+        window.onload = fetchCurrentEvent;
+    </script>
+</head>
+<body>
+    <h1>Current Event</h1>
+    <p id="eventString"></p>
+</body>
+</html>
