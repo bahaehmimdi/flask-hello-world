@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps with Flask</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB33ACVQvP1lE5gK5nnARM_VEmr0eSP_ic"></script>
+</head>
+<body>
+
+<div id="map" style="height: 500px; width: 100%;"></div>
+
+<script>
+    function initMap() {
+        var center = {lat: {{ locations[0].latitude }}, lng: {{ locations[0].longitude }}};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            center: center
+        });
+
+        {% for location in locations %}
+        var marker = new google.maps.Marker({
+            position: {lat: {{ location.latitude }}, lng: {{ location.longitude }}},
+            map: map,
+            title: '{{ location.name }}'
+        });
+
+        marker.addListener('click', function() {
+            // Do something when the marker is clicked
+            alert('You clicked on {{ location.name }}');
+        });
+        {% endfor %}
+    }
+
+    google.maps.event.addDomListener(window, 'load', initMap);
+</script>
+
+</body>
+</html>
