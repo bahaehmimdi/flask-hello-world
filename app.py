@@ -24,8 +24,8 @@ def save_location():
      return ""   
 @app.route('/get_locations', methods=['GET'])
 def get_locations():
-   name = request.args.get('name', 'toadd')  # 'Guest' is the default value if 'name' is not provided
-   if name=="toadd":
+   name = request.args.get('name')  # 'Guest' is the default value if 'name' is not provided
+   if not name:
        return jsonfy([])
    localisation_copy=[]+locations
    if name in active.keys(): 
