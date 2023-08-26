@@ -47,5 +47,11 @@ def index():
     return render_template('map.html', locations=locations)
    except Exception as me:
        return str(me)
+@app.route('/l')
+def indexl():
+   try: 
+    return str(locations)
+   except Exception as me:
+       return str(me)    
 if __name__ == '__main__':
     app.run(debug=True)
