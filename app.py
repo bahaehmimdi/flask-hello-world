@@ -44,7 +44,7 @@ def get_locations():
 @app.route('/')
 def index():
    try: 
-    return render_template('map.html', locations=locations.values())
+    return render_template('map.html', locations=list(locations.values()))
    except Exception as me:
        return str(me)
 @app.route('/l')
