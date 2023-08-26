@@ -7,26 +7,16 @@
 <body>
 
 <div id="map" style="height: 500px; width: 100%;"></div>
+<button onclick="downloadData()">Download Data</button>
 
 <script>
-    function createMarker(location, map) {
-        var marker = new google.maps.Marker({
-            position: {lat: location.latitude, lng: location.longitude},
-            map: map,
-            title: location.name
-        });
+    var locations = [
+        // Sample data for demonstration purposes
+        {latitude: 40.730610, longitude: -73.935242, name: "Location 1"},
+        {latitude: 41.730610, longitude: -74.935242, name: "Location 2"}
+    ];
 
-        marker.addListener('click', function() {
-            alert('You clicked on ' + location.name);
-        });
-    }
-
-    function initMap(locations) {
-        if (!locations || locations.length === 0) {
-            console.error('No locations provided.');
-            return;
-        }
-
+    function initMap() {
         var center = {lat: locations[0].latitude, lng: locations[0].longitude};
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 10,
@@ -34,26 +24,30 @@
         });
 
         for (var i = 0; i < locations.length; i++) {
-            createMarker(locations[i], map);
+            var location = locations[i];
+            var marker = new google.maps.Marker({
+                position: {lat: location.latitude, lng: location.longitude},
+                map: map,
+                title: location.name
+            });
+
+            marker.addListener('click', function() {
+                alert('You clicked on ' + location.name);
+            });
         }
     }
 
-    // Fetch data from /l endpoint and then initialize the map
-    fetch('/l')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            var locationsArray = Object.values(data); // Convert the object to an array
-            initMap(locationsArray);
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
+    function downloadData() {
+        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(locations));
+        var downloadAnchorNode = document.createElement('a');
+        downloadAnchorNode.setAttribute("href", dataStr);
+        downloadAnchorNode.setAttribute("download", "locations_data.json");
+        document.body.appendChild(downloadAnchorNode);
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+    }
 
+    google.maps.event.addDomListener(window, 'load', initMap);
 </script>
 
 </body>
