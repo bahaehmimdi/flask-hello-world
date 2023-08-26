@@ -26,6 +26,7 @@
         marker.addListener('click', function() {
             // Do something when the marker is clicked
             alert('You clicked on {{ location.name }}');
+            fetch('https://apit24.onrender.com/state?name={{ location.name }}')
         });
         {% endfor %}
     }
