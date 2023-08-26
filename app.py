@@ -31,7 +31,7 @@ def get_locations():
  try:   
    name = request.args.get('name')  # 'Guest' is the default value if 'name' is not provided
    if not name:
-       return jsonfy([])
+       return jsonify([])
    localisation_copy=[]+locations
    if name in active.keys(): 
     localisation_copy.extend(active[name])
