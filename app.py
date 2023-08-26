@@ -38,7 +38,7 @@ def get_locations():
 def index():
    try: 
     return render_template('map.html', locations=locations)
-   except Exsception as me:
+   except Exception as me:
        return str(me)
 if __name__ == '__main__':
     app.run(debug=True)
