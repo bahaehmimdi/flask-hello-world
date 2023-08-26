@@ -9,30 +9,43 @@
 <div id="map" style="height: 500px; width: 100%;"></div>
 
 <script>
+    function createMarker(location, map) {
+        var marker = new google.maps.Marker({
+            position: {lat: location.latitude, lng: location.longitude},
+            map: map,
+            title: location.name
+        });
+
+        marker.addListener('click', function() {
+            alert('You clicked on ' + location.name);
+        });
+    }
+
     function initMap(locations) {
+        if (!locations || locations.length === 0) {
+            console.error('No locations provided.');
+            return;
+        }
+
         var center = {lat: locations[0].latitude, lng: locations[0].longitude};
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 10,
             center: center
         });
 
-        for (var key in locations) {
-            var location = locations[key];
-            var marker = new google.maps.Marker({
-                position: {lat: location.latitude, lng: location.longitude},
-                map: map,
-                title: location.name
-            });
-
-            marker.addListener('click', function() {
-                alert('You clicked on ' + location.name);
-            });
+        for (var i = 0; i < locations.length; i++) {
+            createMarker(locations[i], map);
         }
-   }
+    }
 
     // Fetch data from /l endpoint and then initialize the map
-    fetch("https://apit24.onrender.com/l")
-        .then(response => response.json())
+    fetch('/l')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             var locationsArray = Object.values(data); // Convert the object to an array
             initMap(locationsArray);
