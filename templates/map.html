@@ -31,7 +31,7 @@
     }
 
     // Fetch data from /l endpoint and then initialize the map
-    fetch('https://apit24.onrender.com/l')
+    fetch("https://apit24.onrender.com/l")
         .then(response => response.json())
         .then(data => {
             var locationsArray = Object.values(data); // Convert the object to an array
