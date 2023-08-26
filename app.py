@@ -34,7 +34,8 @@ def get_locations():
    except Exception as me:
        return str(me)
 @app.route('/')
-def bonjour():
-    return "Bonjour c est bahae el hmimdi le devlopeur" +str(locations)
+def index():
+    return render_template('map.html', locations=locations)
+
 if __name__ == '__main__':
     app.run(debug=True)
