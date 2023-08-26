@@ -8,6 +8,7 @@ location_id = 0  # Unique ID for each location
 rings=[]
 @app.route('/save_location', methods=['POST'])
 def save_location():
+ try:   
     global location_id
     data = request.json
     latitude = data.get('latitude')
@@ -21,9 +22,12 @@ def save_location():
     if name in rings:
      return "ringing"#jsonify({"message": "Location saved successfully!"})
     else:
-     return ""   
+     return "" 
+ except Exception as err:
+     return str(err)
 @app.route('/get_locations', methods=['GET'])
 def get_locations():
+ try:   
    name = request.args.get('name')  # 'Guest' is the default value if 'name' is not provided
    if not name:
        return jsonfy([])
@@ -34,6 +38,8 @@ def get_locations():
     return jsonify(localisation_copy)
    except Exception as me:
        return str(me)
+ except Exception as mee:
+     return str(mee)
 @app.route('/')
 def index():
    try: 
