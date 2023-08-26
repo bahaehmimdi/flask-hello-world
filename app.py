@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_socketio import SocketIO
 
 app = Flask(__name__)
-
+active= {}  
 locations = {}  # List to store locations
 location_id = 0  # Unique ID for each location
 rings=[]
