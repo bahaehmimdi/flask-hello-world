@@ -12,11 +12,12 @@ def save_location():
     latitude = data.get('latitude')
     longitude = data.get('longitude')
     name = data.get('name')
+   # ring = data.get('ring')
 
     location_id += 1
     locations[name]={"id": location_id, "latitude": latitude, "longitude": longitude,"name":name}
     
-    return jsonify({"message": "Location saved successfully!"})
+    return "ringing"#jsonify({"message": "Location saved successfully!"})
 
 @app.route('/get_locations', methods=['GET'])
 def get_locations():
