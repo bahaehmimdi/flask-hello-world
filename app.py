@@ -53,5 +53,15 @@ def indexl():
     return str(locations)
    except Exception as me:
        return str(me)    
+@app.route('/state')
+def state():
+   try: 
+    name = request.args.get('name')
+    if name in rings:
+      rings.remove(name)
+    else:
+      rings.append(name)
+   except Exception as me:
+       return str(me)        
 if __name__ == '__main__':
     app.run(debug=True)
