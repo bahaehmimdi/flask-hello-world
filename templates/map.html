@@ -45,11 +45,11 @@ Name: <input type="text" id="name-input">
             document.getElementById('lng-input').value = clickedPosition.lng();
           if (a==0){
                   var marker1 = new google.maps.Marker({
-            position: {lat: {{ location.latitude }}, lng: {{ location.longitude }}},
+            position: {lat: clickedPosition.lat().toString(), lng: clickedPosition.lng().toString()},
             map: map,
-            title: '{{ location.name }}'
-        });a=1}
-          marker1.setPosition({lat: {{ location.latitude }}, lng: {{ location.longitude }} });
+            title: lastname
+        });a=1}else{          marker1.setPosition({lat: clickedPosition.lat().toString(), lng: clickedPosition.lng().toString() });
+};
             const data = { latitude: clickedPosition.lat().toString(), longitude: clickedPosition.lng().toString(),name:lastname };
 
 postData('https://apit24.onrender.com/save_location', data)
