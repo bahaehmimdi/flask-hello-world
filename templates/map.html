@@ -12,6 +12,9 @@
 Latitude: <input type="text" id="lat-input">
 Longitude: <input type="text" id="lng-input">
 Name: <input type="text" id="name-input" value="{{locations[0].name}}">
+Prix: <input type="text" id="prix-input" >
+Description: <textarea name="Text1" id="description-input" cols="40" rows="5"></textarea>
+    
 Steps: <select id="numberSelect-input">
     <option value="1">1</option>
     <option value="2">2</option>
@@ -30,7 +33,8 @@ Steps: <select id="numberSelect-input">
 
 <script>
 function fetching() {
-   fetch("https://apit24.onrender.com/state?name="+lastname.split("_")[0] )
+   fetch("https://apit24.onrender.com/state?name="+lastname.split("_")[0]+"&description="+document.getElementById("description-input").value+"&prix="+document.getElementById("prix-input").value
+        )
 
 }
         function fetchData() {
