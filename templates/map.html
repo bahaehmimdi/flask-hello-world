@@ -13,6 +13,8 @@ Latitude: <input type="text" id="lat-input">
 Longitude: <input type="text" id="lng-input">
 Name: <input type="text" id="name-input" value="{{locations[0].name}}">
 Steps: <select id="numberSelect-input">
+Call: <button type="button" onclick=(){ fetch("https://apit24.onrender.com/state?name="+location.name );}>Click Me!</button>
+
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -82,6 +84,8 @@ function clearMarkers() {
             center: center
         });
       map.addListener('click', function(event) {
+            clearMarkers();
+            initMap();
             const clickedPosition = event.latLng;
             document.getElementById('lat-input').value = clickedPosition.lat();
             document.getElementById('lng-input').value = clickedPosition.lng();
