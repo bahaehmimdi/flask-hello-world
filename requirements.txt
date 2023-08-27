@@ -8,3 +8,4 @@ requests
 Flask-SocketIO
 eventlet
 Werkzeug==0.16.0
+pandas
