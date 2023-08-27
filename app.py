@@ -75,8 +75,8 @@ def completed():
    try: 
     name = request.args.get('name')
     for i,j in locations.copy().items():
-     if name in i:
-       locations[name]=j
+     if name in i and "cible" in i:
+       del locations[i]
    except Exception as me:
        return str(me)   
 @app.route('/datas')
