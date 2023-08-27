@@ -28,7 +28,7 @@ def save_location():
     locations[name]={"id": location_id, "latitude": latitude, "longitude": longitude,"name":name}
 
     if name in rings:
-     return "ringing__" #jsonify({"message": "Location saved successfully!"})
+     return "done" #jsonify({"message": "Location saved successfully!"})
     else:
      return "" 
  except Exception as err:
@@ -66,13 +66,13 @@ def indexl():
 def state():
    try: 
     name = request.args.get('name')
-    prix = request.args.get('prix','')
-    description = request.args.get('description',"")
+ #   prix = request.args.get('prix','')
+  #  description = request.args.get('description',"")
     if name in rings:
       rings.remove(name)
     else:
       rings.append(name)
-    return prix+"_"+description 
+    return "done"#prix+"_"+description 
    except Exception as me:
        return str(me)    
 @app.route('/completed')
