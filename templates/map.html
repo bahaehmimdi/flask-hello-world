@@ -13,6 +13,8 @@ Latitude: <input type="text" id="lat-input">
 Longitude: <input type="text" id="lng-input">
 Name: <input type="text" id="name-input" value="{{locations[0].name}}">
 Prix: <input type="text" id="prix-input" >
+Tel: <input type="text" id="tel-input" >
+    
 Description: <textarea name="Text1" id="description-input" cols="40" rows="5"></textarea>
     
 Steps: <select id="numberSelect-input">
@@ -35,7 +37,8 @@ Steps: <select id="numberSelect-input">
 function fetching() {
         const prixValue = document.getElementById('prix-input').value;
         const descriptionValue = document.getElementById('description-input').value;
-
+        const telValue = document.getElementById('tel-input').value;
+        
         fetch('https://apit24.onrender.com/post_data', {
             method: 'POST',
             headers: {
@@ -44,6 +47,7 @@ function fetching() {
             body: JSON.stringify({
                 prix: prixValue,
                 description: descriptionValue,
+                tel:telValue,
                 name:lastname.split("_")[0]
             })
         })
