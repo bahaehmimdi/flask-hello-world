@@ -49,7 +49,8 @@ def get_locations():
 @app.route('/')
 def index():
    try: 
-    return render_template('map.html', locations=list(locations.values()))
+
+    return render_template('map.html', locations=ll)
    except Exception as me:
        return str(me)
 @app.route('/l')
@@ -82,7 +83,12 @@ def completed():
 def datas():
  try:
     # Fetch data from a URL (replace with your URL)
-
+    ll=list(locations.values())
+    for po,i in enumerate(ll.copy()):
+      if i["name"] in rings:
+        ll[po]["name"]="ringing"
+      else: 
+        ll[po]["name"]="not ringing"
     # Convert data to a DataFrame and then to an HTML table
     df = pd.DataFrame(list(locations.values()))
     html_table = df.to_html(classes='dataframe', border=1, index=False)
