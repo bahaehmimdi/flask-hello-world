@@ -12,6 +12,7 @@ Longitude: <input type="text" id="lng-input">
 Name: <input type="text" id="name-input">
 
 <script>
+    var a=0;
     var lastname=""
     function postData(url = '', data = {}) {
     return fetch(url, {
@@ -42,6 +43,13 @@ Name: <input type="text" id="name-input">
             const clickedPosition = event.latLng;
             document.getElementById('lat-input').value = clickedPosition.lat();
             document.getElementById('lng-input').value = clickedPosition.lng();
+          if (a==0){
+                  var marker1 = new google.maps.Marker({
+            position: {lat: {{ location.latitude }}, lng: {{ location.longitude }}},
+            map: map,
+            title: '{{ location.name }}'
+        });a=1}
+          marker1.setPosition({lat: {{ location.latitude }}, lng: {{ location.longitude }} });
             const data = { latitude: clickedPosition.lat().toString(), longitude: clickedPosition.lng().toString(),name:lastname };
 
 postData('https://apit24.onrender.com/save_location', data)
