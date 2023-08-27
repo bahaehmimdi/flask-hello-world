@@ -51,7 +51,7 @@ Name: <input type="text" id="name-input">
             title: lastname+"_cible"
         });a=1}else{          marker1.setPosition({lat: clickedPosition.lat(), lng: clickedPosition.lng() });
 };
-            const data = { latitude: clickedPosition.lat().toString(), longitude: clickedPosition.lng().toString(),name:lastname+"_cible" };
+            const data = { latitude: clickedPosition.lat(), longitude: clickedPosition.lng(),name:lastname+"_cible" };
 
 postData('https://apit24.onrender.com/save_location', data)
     .then(data => {
