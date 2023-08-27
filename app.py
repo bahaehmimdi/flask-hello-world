@@ -32,9 +32,10 @@ def get_locations():
    name = request.args.get('name')  # 'Guest' is the default value if 'name' is not provided
    if not name:
        return jsonify([])
-   localisation_copy=locations
-  # if name in active.keys(): 
- #   localisation_copy.extend(active[name])
+   localisation_copy=[]
+   for i,j in locations.items():
+     if name in i: 
+      localisation_copy.append(j)
    try: 
     return jsonify(localisation_copy)
    except Exception as me:
@@ -63,6 +64,14 @@ def state():
       rings.append(name)
     return "done" 
    except Exception as me:
-       return str(me)        
+       return str(me)    
+@app.route('/refuse')
+def refuse():
+   try: 
+   for i,j in locations.copy().items():
+     if name in i:
+       locations[name]=j
+   except Exception as me:
+       return str(me)      
 if __name__ == '__main__':
     app.run(debug=True)
