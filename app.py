@@ -66,7 +66,7 @@ def state():
    except Exception as me:
        return str(me)    
 @app.route('/completed')
-def refuse():
+def completed():
    try: 
     for i,j in locations.copy().items():
      if name in i:
