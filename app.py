@@ -23,7 +23,8 @@ def post_data():
     prix = data.get('prix')
     description = data.get('description')
     name = data.get('name')
-    prde[name]={"prix":prix,"description":description}
+    tel=  = data.get('tel')
+    prde[name]={"prix":prix,"description":description,"tel":tel}
     # You can process the data here if needed
 
     # Return a response
@@ -51,7 +52,7 @@ def save_location():
     locations[name]={"id": location_id, "latitude": latitude, "longitude": longitude,"name":name}
 
     if name in rings:
-     return prde[name]["prix"]+"_"+prde[name]["description"] #jsonify({"message": "Location saved successfully!"})
+     return prde[name]["prix"]+"_"+prde[name]["description"]+"_"+prde[name]["tel"] #jsonify({"message": "Location saved successfully!"})
     else:
      return "" 
  except Exception as err:
