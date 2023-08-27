@@ -61,6 +61,7 @@ def state():
       rings.remove(name)
     else:
       rings.append(name)
+    return "done" 
    except Exception as me:
        return str(me)        
 if __name__ == '__main__':
