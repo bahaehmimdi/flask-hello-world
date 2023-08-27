@@ -229,8 +229,8 @@ function clearMarkers() {
             center: center
         });
       map.addListener('click', function(event) {
-            clearMarkers();
-            initMap();
+        //    clearMarkers();
+          //  initMap();
             const clickedPosition = event.latLng;
             document.getElementById('lat-input').value = clickedPosition.lat();
             document.getElementById('lng-input').value = clickedPosition.lng();
@@ -297,8 +297,8 @@ fetch(url)
             alert('You clicked on '+location.name);
             document.getElementById('name-input').value=location.name
             fetch('https://apit24.onrender.com/state?name='+location.name );
-             clearMarkers();
-            initMap();
+             //clearMarkers();
+            //initMap();
         });        });
     })
     .catch(error => {
