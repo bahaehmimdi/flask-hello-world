@@ -161,7 +161,7 @@ fetch(url)
                           icon: {
                 path: google.maps.SymbolPath.CIRCLE,
                 scale: 10,
-                fillColor: stringToColor(location.name),
+                fillColor: stringToColor(location.name.split("_")[0]),
                 fillOpacity: 1,
                 strokeWeight: 0
             }
