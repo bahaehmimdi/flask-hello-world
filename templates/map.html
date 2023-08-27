@@ -104,22 +104,42 @@ postData('https://apit24.onrender.com/save_location', data)
         console.error('Error:', error);
     });
         });
-        {% for location in locations %}
-        var marker = new google.maps.Marker({
-            position: {lat: {{ location.latitude }}, lng: {{ location.longitude }}},
+        const url = 'https://apit24.onrender.com/l';
+
+// Use the fetch API to get the JSON data
+fetch(url)
+    .then(response => {
+        // Check if the request was successful
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Now, 'data' contains the list of locations
+        console.log(data);
+        
+        // You can process the data as needed
+        data.forEach(location => {
+     var marker = new google.maps.Marker({
+            position: {lat: location.latitude , lng:  location.longitude },
             map: map,
-            title: '{{ location.name }}'
+            title:  location.name
         });
-        lastname='{{ location.name }}'
+        lastname= location.name 
         marker.addListener('click', function() {
             // Do something when the marker is clicked
-            alert('You clicked on {{ location.name }}');
-            document.getElementById('name-input').value='{{ location.name }}'
-            fetch('https://apit24.onrender.com/state?name={{ location.name }}');
+            alert('You clicked on '+location.name);
+            document.getElementById('name-input').value=location.name
+            fetch('https://apit24.onrender.com/state?name='+location.name );
              clearMarkers();
             initMap();
-        });
-        {% endfor %}
+        });        });
+    })
+    .catch(error => {
+        console.log('There was a problem with the fetch operation:', error.message);
+    });
+     
         document.getElementById('lat-input').addEventListener('change', updateMarkerFromInputs);
         document.getElementById('lng-input').addEventListener('change', updateMarkerFromInputs);
 
