@@ -18,6 +18,9 @@ def save_location():
    # ring = data.get('ring')
 
     location_id += 1
+    ns=name.spli("_")
+    if len(ns)>2:
+      name=ns[0]+"_"+ns[-2]+"_"+ns[-1]
     locations[name]={"id": location_id, "latitude": latitude, "longitude": longitude,"name":name}
 
     if name in rings:
