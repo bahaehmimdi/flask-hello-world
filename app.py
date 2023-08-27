@@ -6,8 +6,25 @@ import pandas as pd
 app = Flask(__name__)
 active= {}  
 locations = {}  # List to store locations
+datas={}  
 location_id = 0  # Unique ID for each location
 rings=[]
+@app.route('/post_data', methods=['POST'])
+def post_data():
+    # Parse the incoming JSON data
+    data = request.json
+
+    # Extract 'prix' and 'description' from the JSON data
+    prix = data.get('prix')
+    description = data.get('description')
+    name = data.get('name')
+    datas[name]={"prix":prix,"description":description}
+    # You can process the data here if needed
+
+    # Return a response
+    return jsonify({"message": "Data received successfully!"})
+
+
 @app.route('/save_location', methods=['POST'])
 def save_location():
  try:   
@@ -28,7 +45,7 @@ def save_location():
     locations[name]={"id": location_id, "latitude": latitude, "longitude": longitude,"name":name}
 
     if name in rings:
-     return "done" #jsonify({"message": "Location saved successfully!"})
+     return datas[name]["prix"]+"_"+datas[name]["description"] #jsonify({"message": "Location saved successfully!"})
     else:
      return "" 
  except Exception as err:
