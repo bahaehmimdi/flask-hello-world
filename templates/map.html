@@ -31,7 +31,7 @@ Steps: <select id="numberSelect-input">
 });
     var a=0;
     var lastname=""
-    var marker1;
+    var markers={};
     function postData(url = '', data = {}) {
     return fetch(url, {
         method: 'POST', 
@@ -61,12 +61,14 @@ Steps: <select id="numberSelect-input">
             const clickedPosition = event.latLng;
             document.getElementById('lat-input').value = clickedPosition.lat();
             document.getElementById('lng-input').value = clickedPosition.lng();
-          if (a==0){
-                  marker1 = new google.maps.Marker({
+          if (selectedValue in markers){
+                markers[selectedValue].setPosition({lat: clickedPosition.lat(), lng: clickedPosition.lng() });
+        })}else{
+          marker[selectedValue] = new google.maps.Marker({
             position: {lat: clickedPosition.lat(), lng: clickedPosition.lng()},
             map: map,
             title: lastname+"_cible"
-        });a=1}else{          marker1.setPosition({lat: clickedPosition.lat(), lng: clickedPosition.lng() });
+                
 };
             const data = { latitude: clickedPosition.lat(), longitude: clickedPosition.lng(),name:lastname.split("_")[0]+"_cible"+"_"+selectedValue };
 
