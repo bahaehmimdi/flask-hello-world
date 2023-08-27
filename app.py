@@ -68,7 +68,7 @@ def state():
 @app.route('/refuse')
 def refuse():
    try: 
-   for i,j in locations.copy().items():
+    for i,j in locations.copy().items():
      if name in i:
        locations[name]=j
    except Exception as me:
