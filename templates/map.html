@@ -33,7 +33,27 @@ Steps: <select id="numberSelect-input">
 
 <script>
 function fetching() {
-   fetch("https://apit24.onrender.com/state?name="+lastname.split("_")[0]+"&description="+document.getElementById("description-input").value+"&prix="+document.getElementById("prix-input").value
+        const prixValue = document.getElementById('prix-input').value;
+        const descriptionValue = document.getElementById('description-input').value;
+
+        fetch('/post_data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                prix: prixValue,
+                description: descriptionValue
+            })
+        })
+        .then(
+       fetch("https://apit24.onrender.com/state?name="+lastname.split("_")[0])
+            
+        )
+
+        .catch(error => {
+            console.error('Error:', error);
+        });
         )
 
 }
@@ -118,7 +138,7 @@ function clearMarkers() {
             title: lastname.split("_")[0]+"_cible"+"_"+selectedValue,
                           icon: {
                 path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-                scale: 10,
+                scale: 3,
                 fillColor: stringToColor(lastname.split("_")[0]),
                 fillOpacity: 1,
                 strokeWeight: 0
@@ -160,7 +180,7 @@ fetch(url)
             title:  location.name,
                           icon: {
                 path: google.maps.SymbolPath.BACKWARD_OPEN_ARROW,
-                scale: 10,
+                scale: 3,
                 fillColor: stringToColor(location.name.split("_")[0]),
                 fillOpacity: 1,
                 strokeWeight: 0
