@@ -48,10 +48,10 @@ Name: <input type="text" id="name-input">
                   marker1 = new google.maps.Marker({
             position: {lat: clickedPosition.lat(), lng: clickedPosition.lng()},
             map: map,
-            title: lastname
+            title: lastname+"_cible"
         });a=1}else{          marker1.setPosition({lat: clickedPosition.lat(), lng: clickedPosition.lng() });
 };
-            const data = { latitude: clickedPosition.lat().toString(), longitude: clickedPosition.lng().toString(),name:lastname };
+            const data = { latitude: clickedPosition.lat().toString(), longitude: clickedPosition.lng().toString(),name:lastname+"_cible" };
 
 postData('https://apit24.onrender.com/save_location', data)
     .then(data => {
