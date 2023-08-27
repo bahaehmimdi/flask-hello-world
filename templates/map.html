@@ -85,13 +85,13 @@ function clearMarkers() {
             const clickedPosition = event.latLng;
             document.getElementById('lat-input').value = clickedPosition.lat();
             document.getElementById('lng-input').value = clickedPosition.lng();
-          if (lastname+"_cible_"+selectedValue in markers){
+          if (lastname.split("_")[0]+"_cible"+"_"+selectedValue in markers){
                 markers[lastname+"_cible_"+selectedValue].setPosition({lat: clickedPosition.lat(), lng: clickedPosition.lng() });
         }else{
-          markers[lastname+"_cible_"+selectedValue] = new google.maps.Marker({
+          markers[lastname.split("_")[0]+"_cible"+"_"+selectedValue] = new google.maps.Marker({
             position: {lat: clickedPosition.lat(), lng: clickedPosition.lng()},
             map: map,
-            title: lastname+"_cible_"+selectedValue
+            title: lastname.split("_")[0]+"_cible"+"_"+selectedValue
                 
 });}
             const data = { latitude: clickedPosition.lat(), longitude: clickedPosition.lng(),name:lastname.split("_")[0]+"_cible"+"_"+selectedValue };
