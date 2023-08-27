@@ -9,8 +9,28 @@
 <div id="map" style="height: 500px; width: 100%;"></div>
 Latitude: <input type="text" id="lat-input">
 Longitude: <input type="text" id="lng-input">
+Name: <input type="text" id="name-input">
 
 <script>
+    var lastname=""
+    function postData(url = '', data = {}) {
+    return fetch(url, {
+        method: 'POST', 
+        mode: 'cors', 
+        cache: 'no-cache', 
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify(data) 
+    })
+    .then(response => response.json()); 
+}
+
+// Example usage:
+
     function initMap() {
 
         var center = {lat: {{ locations[0].latitude }}, lng: {{ locations[0].longitude }}};
@@ -22,7 +42,15 @@ Longitude: <input type="text" id="lng-input">
             const clickedPosition = event.latLng;
             document.getElementById('lat-input').value = clickedPosition.lat();
             document.getElementById('lng-input').value = clickedPosition.lng();
-            moveMarker(clickedPosition);
+            const data = { latitude: clickedPosition.lat().toString(), longitude: clickedPosition.lng().toString(),name:lastname };
+
+postData('https://apit24.onrender.com/save_location', data)
+    .then(data => {
+        console.log(data); // JSON response from server
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
         });
         {% for location in locations %}
         var marker = new google.maps.Marker({
@@ -30,10 +58,11 @@ Longitude: <input type="text" id="lng-input">
             map: map,
             title: '{{ location.name }}'
         });
-
+        lastname='{{ location.name }}'
         marker.addListener('click', function() {
             // Do something when the marker is clicked
             alert('You clicked on {{ location.name }}');
+            document.getElementById('name-input').value='{{ location.name }}'
             fetch('https://apit24.onrender.com/state?name={{ location.name }}')
         });
         {% endfor %}
