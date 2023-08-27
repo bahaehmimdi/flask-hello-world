@@ -36,7 +36,7 @@ function fetching() {
         const prixValue = document.getElementById('prix-input').value;
         const descriptionValue = document.getElementById('description-input').value;
 
-        fetch('/post_data', {
+        fetch('https://apit24.onrender.com/post_data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
