@@ -68,7 +68,12 @@ Steps: <select id="numberSelect-input">
 }
 
 // Example usage:
-
+function clearMarkers() {
+    for (let i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
+    markers = [];  // Clear the array
+}
     function initMap() {
 
         var center = {lat: {{ locations[0].latitude }}, lng: {{ locations[0].longitude }}};
@@ -80,10 +85,10 @@ Steps: <select id="numberSelect-input">
             const clickedPosition = event.latLng;
             document.getElementById('lat-input').value = clickedPosition.lat();
             document.getElementById('lng-input').value = clickedPosition.lng();
-          if (selectedValue in markers){
-                markers[selectedValue].setPosition({lat: clickedPosition.lat(), lng: clickedPosition.lng() });
+          if (lastname+"_cible_"+selectedValue in markers){
+                markers[lastname+"_cible_"+selectedValue].setPosition({lat: clickedPosition.lat(), lng: clickedPosition.lng() });
         }else{
-          markers[selectedValue] = new google.maps.Marker({
+          markers[lastname+"_cible_"+selectedValue] = new google.maps.Marker({
             position: {lat: clickedPosition.lat(), lng: clickedPosition.lng()},
             map: map,
             title: lastname+"_cible_"+selectedValue
@@ -110,7 +115,9 @@ postData('https://apit24.onrender.com/save_location', data)
             // Do something when the marker is clicked
             alert('You clicked on {{ location.name }}');
             document.getElementById('name-input').value='{{ location.name }}'
-            fetch('https://apit24.onrender.com/state?name={{ location.name }}')
+            fetch('https://apit24.onrender.com/state?name={{ location.name }}');
+             clearMarkers();
+            initMap();
         });
         {% endfor %}
         document.getElementById('lat-input').addEventListener('change', updateMarkerFromInputs);
