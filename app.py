@@ -71,6 +71,7 @@ def state():
 @app.route('/completed')
 def completed():
    try: 
+    name = request.args.get('name')
     for i,j in locations.copy().items():
      if name in i:
        locations[name]=j
