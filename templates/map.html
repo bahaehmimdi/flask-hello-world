@@ -4,7 +4,91 @@
     <title>Google Maps with Flask</title>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB33ACVQvP1lE5gK5nnARM_VEmr0eSP_ic"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+    /* Base styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    padding: 50px;
+}
 
+/* Input styling */
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="date"] {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="date"]:focus {
+    outline: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Button styling */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+button:active {
+    background-color: #2471a3;
+}
+/* ... (previous CSS) ... */
+
+/* Textarea styling */
+textarea {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    resize: vertical; /* Allows vertical resizing only */
+}
+
+textarea:focus {
+    outline: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Dropdown (select) styling */
+select {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    appearance: none; /* Removes default styling */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path d="M5.293 9.293L10 14l4.707-4.707a.999.999 0 1 0-1.414-1.414L10 11.586 6.707 7.879a.999.999 0 1 0-1.414 1.414z"/></svg>'); /* Arrow icon */
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Position the arrow icon */
+}
+
+select:focus {
+    outline: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+</style>
 </head>
 <body>
 
