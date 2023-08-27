@@ -43,7 +43,8 @@ function fetching() {
             },
             body: JSON.stringify({
                 prix: prixValue,
-                description: descriptionValue
+                description: descriptionValue,
+                name:lastname.split("_")[0]
             })
         })
         .then(
@@ -130,7 +131,7 @@ function clearMarkers() {
             document.getElementById('lat-input').value = clickedPosition.lat();
             document.getElementById('lng-input').value = clickedPosition.lng();
           if (lastname.split("_")[0]+"_cible"+"_"+selectedValue in markers){
-                markers[lastname+"_cible_"+selectedValue].setPosition({lat: clickedPosition.lat(), lng: clickedPosition.lng() });
+                markers[lastname.split("_")[0]+"_cible"+"_"+selectedValue].setPosition({lat: clickedPosition.lat(), lng: clickedPosition.lng() });
         }else{
           markers[lastname.split("_")[0]+"_cible"+"_"+selectedValue] = new google.maps.Marker({
             position: {lat: clickedPosition.lat(), lng: clickedPosition.lng()},
