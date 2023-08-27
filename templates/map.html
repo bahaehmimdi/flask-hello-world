@@ -64,10 +64,10 @@ Steps: <select id="numberSelect-input">
           if (selectedValue in markers){
                 markers[selectedValue].setPosition({lat: clickedPosition.lat(), lng: clickedPosition.lng() });
         }else{
-          marker[selectedValue] = new google.maps.Marker({
+          markers[selectedValue] = new google.maps.Marker({
             position: {lat: clickedPosition.lat(), lng: clickedPosition.lng()},
             map: map,
-            title: lastname+"_cible"
+            title: lastname+"_cible_"+selectedValue
                 
 });}
             const data = { latitude: clickedPosition.lat(), longitude: clickedPosition.lng(),name:lastname.split("_")[0]+"_cible"+"_"+selectedValue };
