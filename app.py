@@ -80,6 +80,7 @@ def completed():
        return str(me)   
 @app.route('/datas')
 def datas():
+ try:
     df = pd.DataFrame(locations.values())
     html_table = df.to_html(classes='dataframe', border=1, index=False)
     
@@ -94,5 +95,7 @@ def datas():
         </body>
     </html>
     ''', html_table=html_table)    
+ except Exception as me:
+       return str(traceback.format_exc())
 if __name__ == '__main__':
     app.run(debug=True)
