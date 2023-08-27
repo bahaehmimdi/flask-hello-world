@@ -14,6 +14,7 @@ Name: <input type="text" id="name-input">
 <script>
     var a=0;
     var lastname=""
+    var marker1;
     function postData(url = '', data = {}) {
     return fetch(url, {
         method: 'POST', 
@@ -44,7 +45,7 @@ Name: <input type="text" id="name-input">
             document.getElementById('lat-input').value = clickedPosition.lat();
             document.getElementById('lng-input').value = clickedPosition.lng();
           if (a==0){
-                  let marker1 = new google.maps.Marker({
+                  marker1 = new google.maps.Marker({
             position: {lat: clickedPosition.lat(), lng: clickedPosition.lng()},
             map: map,
             title: lastname
