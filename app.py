@@ -81,20 +81,13 @@ def completed():
 @app.route('/datas')
 def datas():
  try:
+    # Fetch data from a URL (replace with your URL)
+
+    # Convert data to a DataFrame and then to an HTML table
     df = pd.DataFrame(list(locations.values()))
     html_table = df.to_html(classes='dataframe', border=1, index=False)
     
-    return render_template_string('''
-    <html>
-        <head>
-            <!-- Refresh page every 5 seconds -->
-            <meta http-equiv="refresh" content="5">
-        </head>
-        <body>
-            {{ html_table|safe }}
-        </body>
-    </html>
-    ''', html_table=html_table)    
+    return jsonify({'table': html_table}) 
  except Exception as me:
        return str(traceback.format_exc())
 if __name__ == '__main__':
