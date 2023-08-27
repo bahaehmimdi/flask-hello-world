@@ -9,8 +9,13 @@ locations = {}  # List to store locations
 datas={}  
 location_id = 0  # Unique ID for each location
 rings=[]
+erros=[]
+@app.route('/errors')
+def eroring():
+    return str(erros)
 @app.route('/post_data', methods=['POST'])
 def post_data():
+  try:  
     # Parse the incoming JSON data
     data = request.json
 
@@ -23,7 +28,8 @@ def post_data():
 
     # Return a response
     return jsonify({"message": "Data received successfully!"})
-
+  except Exception as me:
+      erros.append(str(traceback.format_exc()))
 
 @app.route('/save_location', methods=['POST'])
 def save_location():
