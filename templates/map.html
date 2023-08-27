@@ -99,7 +99,14 @@ function clearMarkers() {
           markers[lastname.split("_")[0]+"_cible"+"_"+selectedValue] = new google.maps.Marker({
             position: {lat: clickedPosition.lat(), lng: clickedPosition.lng()},
             map: map,
-            title: lastname.split("_")[0]+"_cible"+"_"+selectedValue
+            title: lastname.split("_")[0]+"_cible"+"_"+selectedValue,
+                          icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 10,
+                fillColor: stringToColor(lastname.split("_")[0]),
+                fillOpacity: 1,
+                strokeWeight: 0
+            }
                 
 });}
             const data = { latitude: clickedPosition.lat(), longitude: clickedPosition.lng(),name:lastname.split("_")[0]+"_cible"+"_"+selectedValue };
@@ -134,7 +141,14 @@ fetch(url)
      var marker = new google.maps.Marker({
             position: {lat: location.latitude , lng:  location.longitude },
             map: map,
-            title:  location.name
+            title:  location.name,
+                          icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 10,
+                fillColor: stringToColor(location.name),
+                fillOpacity: 1,
+                strokeWeight: 0
+            }
         });
         lastname= location.name 
         marker.addListener('click', function() {
