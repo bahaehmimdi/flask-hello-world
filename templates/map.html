@@ -122,7 +122,7 @@ fetch(url)
         //console.log(data);
         
         // You can process the data as needed
-        data.forEach(location => {
+         locations.forEach(location => {
      var marker = new google.maps.Marker({
             position: {lat: location.latitude , lng:  location.longitude },
             map: map,
