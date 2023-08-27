@@ -44,7 +44,7 @@ Name: <input type="text" id="name-input">
             document.getElementById('lat-input').value = clickedPosition.lat();
             document.getElementById('lng-input').value = clickedPosition.lng();
           if (a==0){
-                  var marker1 = new google.maps.Marker({
+                  let marker1 = new google.maps.Marker({
             position: {lat: clickedPosition.lat().toString(), lng: clickedPosition.lng().toString()},
             map: map,
             title: lastname
