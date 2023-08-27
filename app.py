@@ -2,6 +2,7 @@ from flask import Flask, request,render_template
 from flask import jsonify
 from flask_socketio import SocketIO
 import traceback
+import pandas as pd
 app = Flask(__name__)
 active= {}  
 locations = {}  # List to store locations
