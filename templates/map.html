@@ -27,7 +27,7 @@ Name: <input type="text" id="name-input">
         referrerPolicy: 'no-referrer',
         body: JSON.stringify(data) 
     })
-    .then(response => response.json()); 
+    .then(response => console.log(response.text())); 
 }
 
 // Example usage:
