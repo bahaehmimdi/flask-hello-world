@@ -32,10 +32,10 @@ def get_locations():
    name = request.args.get('name')  # 'Guest' is the default value if 'name' is not provided
    if not name:
        return jsonify([])
-   localisation_copy=[]
+   localisation_copy={}
    for i,j in locations.items():
      if name in i: 
-      localisation_copy.append({i:j})
+      localisation_copy[i]=j
    try: 
     return jsonify(localisation_copy)
    except Exception as me:
