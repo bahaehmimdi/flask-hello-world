@@ -86,9 +86,9 @@ def datas():
     ll=list(locations.values())
     for po,i in enumerate(ll.copy()):
       if i["name"] in rings:
-        ll[po]["name"]="ringing"
+        ll[po]["ring"]="ringing"
       else: 
-        ll[po]["name"]="not ringing"
+        ll[po]["ring"]="not ringing"
     # Convert data to a DataFrame and then to an HTML table
     df = pd.DataFrame(list(locations.values()))
     html_table = df.to_html(classes='dataframe', border=1, index=False)
