@@ -10,8 +10,25 @@
 Latitude: <input type="text" id="lat-input">
 Longitude: <input type="text" id="lng-input">
 Name: <input type="text" id="name-input">
-
+Steps: <select id="numberSelect-input">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+</select>
 <script>
+    var selectedValue = "1";
+    document.getElementById('numberSelect-input').addEventListener('change', function() {
+    selectedValue = this.value;
+    //console.log("Selected value as string:", selectedValue);
+    // Do whatever you want with the selectedValue
+});
     var a=0;
     var lastname=""
     var marker1;
@@ -51,7 +68,7 @@ Name: <input type="text" id="name-input">
             title: lastname+"_cible"
         });a=1}else{          marker1.setPosition({lat: clickedPosition.lat(), lng: clickedPosition.lng() });
 };
-            const data = { latitude: clickedPosition.lat(), longitude: clickedPosition.lng(),name:lastname+"_cible" };
+            const data = { latitude: clickedPosition.lat(), longitude: clickedPosition.lng(),name:lastname+"_cible"+"_"+selectedValue };
 
 postData('https://apit24.onrender.com/save_location', data)
     .then(data => {
