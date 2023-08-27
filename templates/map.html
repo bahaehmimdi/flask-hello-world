@@ -63,13 +63,13 @@ Steps: <select id="numberSelect-input">
             document.getElementById('lng-input').value = clickedPosition.lng();
           if (selectedValue in markers){
                 markers[selectedValue].setPosition({lat: clickedPosition.lat(), lng: clickedPosition.lng() });
-        })}else{
+        }else{
           marker[selectedValue] = new google.maps.Marker({
             position: {lat: clickedPosition.lat(), lng: clickedPosition.lng()},
             map: map,
             title: lastname+"_cible"
                 
-};
+});}
             const data = { latitude: clickedPosition.lat(), longitude: clickedPosition.lng(),name:lastname.split("_")[0]+"_cible"+"_"+selectedValue };
 
 postData('https://apit24.onrender.com/save_location', data)
