@@ -1,7 +1,7 @@
 from flask import Flask, request,render_template
 from flask import jsonify
 from flask_socketio import SocketIO
-
+import traceback
 app = Flask(__name__)
 active= {}  
 locations = {}  # List to store locations
@@ -39,9 +39,9 @@ def get_locations():
    try: 
     return jsonify(localisation_copy)
    except Exception as me:
-       return str(me)
+       return str(traceback.format_exc())
  except Exception as mee:
-     return str(mee)
+     return str(traceback.format_exc())
 @app.route('/')
 def index():
    try: 
