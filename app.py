@@ -23,7 +23,7 @@ def post_data():
     prix = data.get('prix')
     description = data.get('description')
     name = data.get('name')
-    tel=  = data.get('tel')
+    tel=   data.get('tel')
     prde[name]={"prix":prix,"description":description,"tel":tel}
     # You can process the data here if needed
 
