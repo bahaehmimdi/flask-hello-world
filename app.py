@@ -76,6 +76,22 @@ def completed():
      if name in i:
        locations[name]=j
    except Exception as me:
-       return str(me)      
+       return str(me)   
+@app.route('/datas')
+def datas():
+    df = pd.DataFrame(locations.values())
+    html_table = df.to_html(classes='dataframe', border=1, index=False)
+    
+    return render_template_string('''
+    <html>
+        <head>
+            <!-- Refresh page every 5 seconds -->
+            <meta http-equiv="refresh" content="5">
+        </head>
+        <body>
+            {{ html_table|safe }}
+        </body>
+    </html>
+    ''', html_table=html_table)    
 if __name__ == '__main__':
     app.run(debug=True)
