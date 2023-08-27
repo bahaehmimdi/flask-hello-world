@@ -45,10 +45,10 @@ Name: <input type="text" id="name-input">
             document.getElementById('lng-input').value = clickedPosition.lng();
           if (a==0){
                   let marker1 = new google.maps.Marker({
-            position: {lat: clickedPosition.lat().toString(), lng: clickedPosition.lng().toString()},
+            position: {lat: clickedPosition.lat(), lng: clickedPosition.lng()},
             map: map,
             title: lastname
-        });a=1}else{          marker1.setPosition({lat: clickedPosition.lat().toString(), lng: clickedPosition.lng().toString() });
+        });a=1}else{          marker1.setPosition({lat: clickedPosition.lat(), lng: clickedPosition.lng() });
 };
             const data = { latitude: clickedPosition.lat().toString(), longitude: clickedPosition.lng().toString(),name:lastname };
 
