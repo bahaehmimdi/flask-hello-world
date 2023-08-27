@@ -65,7 +65,7 @@ def state():
     return "done" 
    except Exception as me:
        return str(me)    
-@app.route('/refuse')
+@app.route('/completed')
 def refuse():
    try: 
     for i,j in locations.copy().items():
