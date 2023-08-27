@@ -3,6 +3,8 @@
 <head>
     <title>Google Maps with Flask</title>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB33ACVQvP1lE5gK5nnARM_VEmr0eSP_ic"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 
@@ -22,7 +24,24 @@ Steps: <select id="numberSelect-input">
     <option value="9">9</option>
     <option value="10">10</option>
 </select>
+        <div id="data-container"></div>
+
 <script>
+        function fetchData() {
+            $.ajax({
+                url: '/datas',
+                method: 'GET',
+                success: function(data) {
+                    $('#data-container').html(data.table);
+                }
+            });
+        }
+
+        // Fetch data initially
+        fetchData();
+
+        // Update data every 5 seconds
+        setInterval(fetchData, 5000);
     var selectedValue = "1";
     document.getElementById('numberSelect-input').addEventListener('change', function() {
     selectedValue = this.value;
