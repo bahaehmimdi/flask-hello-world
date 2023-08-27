@@ -56,7 +56,7 @@ def index():
 @app.route('/l')
 def indexl():
    try: 
-    return jsonify(list(locations.values()))
+    return jsonify({"locations": list(locations.values())})
    except Exception as me:
        return str(me)    
 @app.route('/state')
