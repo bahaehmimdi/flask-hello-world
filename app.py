@@ -81,7 +81,7 @@ def completed():
 @app.route('/datas')
 def datas():
  try:
-    df = pd.DataFrame(locations.values())
+    df = pd.DataFrame(list(locations.values()))
     html_table = df.to_html(classes='dataframe', border=1, index=False)
     
     return render_template_string('''
