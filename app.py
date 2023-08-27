@@ -35,7 +35,7 @@ def get_locations():
    localisation_copy=[]
    for i,j in locations.items():
      if name in i: 
-      localisation_copy.append(j)
+      localisation_copy.append({i:j})
    try: 
     return jsonify(localisation_copy)
    except Exception as me:
