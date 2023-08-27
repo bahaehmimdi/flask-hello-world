@@ -100,7 +100,9 @@ Prix: <input type="text" id="prix-input" >
 Tel: <input type="text" id="tel-input" >
     
 Description: <textarea name="Text1" id="description-input" cols="40" rows="5"></textarea>
-    
+Adresse:  <input id="address" type="text" placeholder="Enter an address">
+<button onclick="geocodeAddress()">Get Lat/Lng</button>
+
 Steps: <select id="numberSelect-input">
     <option value="1">1</option>
     <option value="2">2</option>
@@ -118,6 +120,20 @@ Steps: <select id="numberSelect-input">
         <div id="data-container"></div>
 
 <script>
+var geocoder = new google.maps.Geocoder();
+window.geocodeAddress = function() {
+        var address = document.getElementById('address').value;
+        geocoder.geocode({'address': address}, function(results, status) {
+            if (status === 'OK') {
+                var lat = results[0].geometry.location.lat();
+                var lng = results[0].geometry.location.lng();
+                document.getElementById('lat-input').value =  lat 
+                document.getElementById('lng-input').value = lng;
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }    
 function fetching() {
         const prixValue = document.getElementById('prix-input').value;
         const descriptionValue = document.getElementById('description-input').value;
