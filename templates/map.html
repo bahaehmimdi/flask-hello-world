@@ -227,7 +227,7 @@ function clearMarkers() {
             title: lastname.split("_")[0]+"_cible"+"_"+selectedValue,
                           icon: {
                 path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-                scale: 3,
+                scale: 10,
                 fillColor: stringToColor(lastname.split("_")[0]),
                 fillOpacity: 1,
                 strokeWeight: 0
@@ -269,7 +269,7 @@ fetch(url)
             title:  location.name,
                           icon: {
                 path: google.maps.SymbolPath.BACKWARD_OPEN_ARROW,
-                scale: 3,
+                scale: 10,
                 fillColor: stringToColor(location.name.split("_")[0]),
                 fillOpacity: 1,
                 strokeWeight: 0
