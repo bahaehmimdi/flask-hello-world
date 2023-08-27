@@ -117,7 +117,9 @@ fetch(url)
     })
     .then(data => {
         // Now, 'data' contains the list of locations
-        console.log(data);
+        const locations = data.locations;
+
+        //console.log(data);
         
         // You can process the data as needed
         data.forEach(location => {
