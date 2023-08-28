@@ -117,6 +117,13 @@ def ringer():
      return  prde[name]["prix"]+"_"+prde[name]["description"]+"_"+prde[name]["tel"]+"_"+prde[name]["address"]   
     except: 
         return str(traceback.format_exc())
+@app.route('/askring')
+def askring():
+    try:
+     name = request.args.get('name') 
+     return str( name in rings)
+    except:
+     return    str(traceback.format_exc())
 @app.route('/datas')
 def datas():
  try:
