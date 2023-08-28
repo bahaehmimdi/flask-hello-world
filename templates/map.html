@@ -243,11 +243,8 @@ function clearMarkers() {
             map: map,
             title: lastname.split("_")[0]+"_cible"+"_"+selectedValue,
                           icon: {
-                path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-                scale: 10,
-                fillColor: stringToColor(lastname.split("_")[0]),
-                fillOpacity: 1,
-                strokeWeight: 0
+                   url: 'https://apit24.onrender.com/static/logo.png', // URL to your image
+        scaledSize: new google.maps.Size(40, 40) 
             }
                 
 });}
@@ -285,11 +282,8 @@ fetch(url)
             map: map,
             title:  location.name,
                           icon: {
-                path: google.maps.SymbolPath.BACKWARD_OPEN_ARROW,
-                scale: 10,
-                fillColor: stringToColor(location.name.split("_")[0]),
-                fillOpacity: 1,
-                strokeWeight: 0
+          url: 'https://apit24.onrender.com/static/logo.png', // URL to your image
+        scaledSize: new google.maps.Size(40, 40) 
             }
         });
         lastname= location.name 
