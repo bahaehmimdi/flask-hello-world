@@ -95,7 +95,11 @@ select:focus {
 <div id="map" style="height: 500px; width: 100%;"></div>
 Latitude: <input type="text" id="lat-input">
 Longitude: <input type="text" id="lng-input">
-Name: <input type="text" id="name-input" value="{{locations[0].name}}">
+Name: <select name="dropdown" id="name-input">
+            {% for item in my_list %}
+                <option value="{{ item }}">{{ item }}</option>
+            {% endfor %}
+        </select>
 Prix: <input type="text" id="prix-input" >
 Tel: <input type="text" id="tel-input" >
     
