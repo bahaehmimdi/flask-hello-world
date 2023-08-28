@@ -79,7 +79,7 @@ def get_locations():
 def index():
    try: 
 
-    return render_template('map.html', locations=list(locations.values()),my_list=[i["name"] for i in list(locations.values())])
+    return render_template('map.html', locations=list(locations.values()),my_list=[i["name"] for i in list(locations.values()) if "cible" not in i["name"]])
    except Exception as me:
        return str(me)
 @app.route('/l')
