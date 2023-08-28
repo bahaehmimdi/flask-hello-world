@@ -138,7 +138,7 @@ function fetching() {
         const prixValue = document.getElementById('prix-input').value;
         const descriptionValue = document.getElementById('description-input').value;
         const telValue = document.getElementById('tel-input').value;
-        
+        const address=document.getElementById('address').value;
         fetch('https://apit24.onrender.com/post_data', {
             method: 'POST',
             headers: {
@@ -148,7 +148,8 @@ function fetching() {
                 prix: prixValue,
                 description: descriptionValue,
                 tel:telValue,
-                name:lastname.split("_")[0]
+                name:lastname.split("_")[0],
+                address:address
             })
         })
         .then(
