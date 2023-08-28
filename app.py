@@ -40,7 +40,7 @@ def save_location():
     latitude = data.get('latitude')
     longitude = data.get('longitude')
     name = data.get('name')
-    adresse = data.get('adresse')
+    address = data.get('address')
 
 
 
@@ -53,7 +53,7 @@ def save_location():
     locations[name]={"id": location_id, "latitude": latitude, "longitude": longitude,"name":name}
 
     if name in rings:
-     return prde[name]["prix"]+"_"+prde[name]["description"]+"_"+prde[name]["tel"]+"_"+prde[name]["adresse"]    #jsonify({"message": "Location saved successfully!"})
+     return prde[name]["prix"]+"_"+prde[name]["description"]+"_"+prde[name]["tel"]+"_"+prde[name]["address"]    #jsonify({"message": "Location saved successfully!"})
     else:
      return "" 
  except Exception as err:
@@ -113,7 +113,7 @@ def completed():
 def ringer():
     try:
      name = request.args.get('name')
-     return  prde[name]["prix"]+"_"+prde[name]["description"]+"_"+prde[name]["tel"]+"_"+prde[name]["adresse"]   
+     return  prde[name]["prix"]+"_"+prde[name]["description"]+"_"+prde[name]["tel"]+"_"+prde[name]["address"]   
     except: 
         return str(traceback.format_exc())
 @app.route('/datas')
