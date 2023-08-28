@@ -129,6 +129,7 @@ Steps: <select id="numberSelect-input">
   async function fetchAndOpenURL() {
         const dropdown = document.getElementById('name-input');
         const selectedName = dropdown.value;
+        lastname=dropdown.value
         const baseURL = "https://apit24.onrender.com/askpos?name=";
         const fullURL = baseURL + selectedName;
 
