@@ -130,6 +130,8 @@ def askpos():
     try:
      name = request.args.get('name') 
      return "https://www.google.com/maps/dir/?api=1&origin="+str(locations[name+"_cible_1"]["latitude"])+","+str(locations[name+"_cible_1"]["longitude"])+"&destination="+str(locations[name+"_cible_2"]["latitude"])+","+str(locations[name+"_cible_2"]["longitude"])+"&travelmode=driving"
+    except:
+     return    str(traceback.format_exc())   
 @app.route('/datas')
 def datas():
  try:
