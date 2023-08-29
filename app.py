@@ -142,6 +142,10 @@ def datas():
         ll[po]["ring"]="ringing"
       else: 
         ll[po]["ring"]="not ringing"
+      if i["name"] in prde.keys():
+          ll[po].update(prde[i["name"]])
+      else:
+          ll[po].update({"prix":"","description":"","tel":"","address":""})
     # Convert data to a DataFrame and then to an HTML table
     df = pd.DataFrame(list(locations.values()))
     html_table = df.to_html(classes='dataframe', border=1, index=False)
