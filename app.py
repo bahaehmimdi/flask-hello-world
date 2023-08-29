@@ -201,7 +201,7 @@ def datas():
       else:
           ll[po].update({"prix":"","description":"","tel":"","address":""})
       if i["name"] in answer.keys():
-          ll[po].update("answer":answer[i["name"]])
+          ll[po].update({"answer":answer[i["name"]]})
       else:
           ll[po].update({"answer":""})         
     # Convert data to a DataFrame and then to an HTML table
