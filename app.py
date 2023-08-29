@@ -7,7 +7,19 @@ from datetime import datetime
 def log(message):
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     return f"[{current_time}] {message}"
-
+def html(txt):
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="1">
+    <title>Auto Refresh Page</title>
+</head>
+<body>
+    <p>[{current_time}] {message}</p>
+</body>
+</html>
+"""
 app = Flask(__name__)
 active= {}  
 locations = {}  # List to store locations
@@ -112,15 +124,15 @@ def refuse():
    except Exception as me:
        return str(me)  
 @app.route('/accepted')
-def refused():
+def accepted():
    try: 
-    return "<br>".join(accept) 
+    return html("<br>".join(accept)) 
    except Exception as me:
        return str(me)          
 @app.route('/refused')
 def refused():
    try: 
-    return "<br>".join(refuse) 
+    return html("<br>".join(refuse)) 
    except Exception as me:
        return str(me)       
 @app.route('/state')
