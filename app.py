@@ -185,7 +185,14 @@ def askpos():
      name = request.args.get('name') 
      return "https://www.google.com/maps/dir/?api=1&origin="+str(locations[name+"_cible_1"]["latitude"])+","+str(locations[name+"_cible_1"]["longitude"])+"&destination="+str(locations[name+"_cible_2"]["latitude"])+","+str(locations[name+"_cible_2"]["longitude"])+"&travelmode=driving"
     except:
-     return    str(traceback.format_exc())   
+     return    str(traceback.format_exc())  
+@app.route('/remove')
+def removing():
+    try:
+     name = request.args.get('name')  
+     del locations[name]
+    except:
+     return    str(traceback.format_exc())         
 @app.route('/datas')
 def datas():
  try:
