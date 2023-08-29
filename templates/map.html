@@ -93,8 +93,8 @@ select:focus {
 <body>
 
 <div id="map" style="height: 500px; width: 100%;"></div>
-Latitude: <input type="text" id="lat-input">
-Longitude: <input type="text" id="lng-input">
+Latitude: <input hidden type="text" id="lat-input">
+Longitude: <input hidden type="text" id="lng-input">
 Name: <select name="dropdown" id="name-input">
             {% for item in my_list %}
                 <option value="{{ item }}">{{ item }}</option>
@@ -104,15 +104,15 @@ Prix: <input type="text" id="prix-input" >
 Tel: <input type="text" id="tel-input" >
     
 Description: <textarea name="Text1" id="description-input" cols="40" rows="5"></textarea>
-Adresse Depart :<input id="address" type="text"  oninput="getAddressPropositions(this.value)"  onfocus="myFunction(1);" placeholder="Enter an address">
-Adresse Arrivé :<input id="address" type="text"  oninput="getAddressPropositions(this.value)"  onfocus="myFunction(2);"placeholder="Enter an address">
+Adresse Depart :<input id="address1" type="text"  oninput="getAddressPropositions(this.value)"  onfocus="myFunction(1);" placeholder="Enter an address">
+Adresse Arrivé :<input id="address2" type="text"  oninput="getAddressPropositions(this.value)"  onfocus="myFunction(2);"placeholder="Enter an address">
     
 Propositions:    <div id="suggestions"></div>
 
 
-<button onclick="geocodeAddress()">Get Lat/Lng</button>
+<button hidden onclick="geocodeAddress()">Get Lat/Lng</button>
 
-Steps: <select id="numberSelect-input">
+Steps: <select hidden id="numberSelect-input">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -177,8 +177,9 @@ function displaySuggestions(results) {
         let btn = document.createElement('button');
         btn.innerText = result.formatted_address;
         btn.onclick = function() {
-            document.getElementById('address').value = result.formatted_address;
+            document.getElementById('address'+selectedValue).value = result.formatted_address;
             suggestionsDiv.innerHTML = ''; // Clear suggestions after selection
+            geocodeAddress();
         };
         suggestionsDiv.appendChild(btn);
     });
@@ -188,7 +189,7 @@ function displaySuggestions(results) {
 
     
 window.geocodeAddress = function() {
-        var address = document.getElementById('address').value;
+        var address = document.getElementById('address'+selectedValue).value;
         geocoder.geocode({'address': address}, function(results, status) {
             if (status === 'OK') {
                 var lat = results[0].geometry.location.lat();
@@ -226,7 +227,7 @@ function fetching() {
         const prixValue = document.getElementById('prix-input').value;
         const descriptionValue = document.getElementById('description-input').value;
         const telValue = document.getElementById('tel-input').value;
-        const address=document.getElementById('address').value;
+        const address="Depart: "+document.getElementById('address1').value+" Arrivé: "+document.getElementById('address2').value;
         fetch('https://apit24.onrender.com/post_data', {
             method: 'POST',
             headers: {
