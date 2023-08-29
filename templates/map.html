@@ -104,7 +104,7 @@ Prix: <input type="text" id="prix-input" >
 Tel: <input type="text" id="tel-input" >
     
 Description: <textarea name="Text1" id="description-input" cols="40" rows="5"></textarea>
-Adresse:  <input id="address" type="text" placeholder="Enter an address">
+Adresse:  <input id="address" type="text"  oninput="getAddressPropositions(this.value)" placeholder="Enter an address">
 Propositions:    <div id="suggestions"></div>
 
 
