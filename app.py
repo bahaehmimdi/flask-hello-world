@@ -108,7 +108,7 @@ def indexl():
    except Exception as me:
        return str(me)  
 @app.route('/accept')
-def state():
+def accepting():
    try: 
     name = request.args.get('name')
     accept.append(log(name+"accepted")) 
@@ -116,7 +116,7 @@ def state():
    except Exception as me:
        return str(me)   
 @app.route('/refuse')
-def refuse():
+def refusing():
    try: 
     name = request.args.get('name')
     refuse.append(log(name+"refused")) 
