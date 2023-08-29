@@ -22,6 +22,7 @@ def html(txt):
 """
 app = Flask(__name__)
 active= {}  
+answer= {} 
 locations = {}  # List to store locations
 prde={}  
 location_id = 0  # Unique ID for each location
@@ -111,7 +112,7 @@ def indexl():
 def accepting():
    try: 
     name = request.args.get('name')
-    accept.append(log(name+"accepted")) 
+    answer[name]=log("accepted") 
     return "done"   
    except Exception as me:
        return str(me)   
@@ -119,7 +120,7 @@ def accepting():
 def refusing():
    try: 
     name = request.args.get('name')
-    refuse.append(log(name+"refused")) 
+    answer[name]=log("refused") 
     return "done"   
    except Exception as me:
        return str(me)  
@@ -199,6 +200,10 @@ def datas():
           ll[po].update(prde[i["name"]])
       else:
           ll[po].update({"prix":"","description":"","tel":"","address":""})
+       if i["name"] in answer.keys():
+          ll[po].update("answer":answer[i["name"]])
+      else:
+          ll[po].update({"answer":""})         
     # Convert data to a DataFrame and then to an HTML table
     df = pd.DataFrame(ll)
     html_table = df.to_html(classes='dataframe', border=1, index=False)
