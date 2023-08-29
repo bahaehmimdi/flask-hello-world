@@ -171,7 +171,16 @@ window.geocodeAddress = function() {
         scaledSize: new google.maps.Size(40, 40) 
             }
                 
-});}
+});};   const data = { latitude: lat, longitude: lng,name:lastname.split("_")[0]+"_cible"+"_"+selectedValue };
+
+postData('https://apit24.onrender.com/save_location', data)
+    .then(data => {
+        console.log(data); // JSON response from server
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+                
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
