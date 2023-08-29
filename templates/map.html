@@ -112,7 +112,7 @@ Propositions:    <div id="suggestions"></div>
 
 <button hidden onclick="geocodeAddress()">Get Lat/Lng</button>
 
-Steps: <select  id="numberSelect-input">
+Steps: <select hidden id="numberSelect-input">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -178,7 +178,8 @@ function displaySuggestions(results) {
         let btn = document.createElement('button');
         btn.innerText = result.formatted_address;
         btn.onclick = function() {
-            document.getElementById('address'+selectedValue).value = result.formatted_address;
+            let z=document.getElementById('numberSelect-input').value
+            document.getElementById('address'+z).value = result.formatted_address;
             suggestionsDiv.innerHTML = ''; // Clear suggestions after selection
             geocodeAddress();
         };
