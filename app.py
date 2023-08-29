@@ -16,7 +16,7 @@ def html(txt):
     <title>Auto Refresh Page</title>
 </head>
 <body>
-    <p>[{current_time}] {message}</p>
+    <p> {txt}</p>
 </body>
 </html>
 """
