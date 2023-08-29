@@ -19,6 +19,32 @@
                         setTimeout(fetchCurrentEvent, 30000);  // Check every minute if no event is found
                     }
                 });
+              fetch('/refused')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('eventString1').innerText = data.event_string;
+                    if (data.end_time) {
+                        const endTime = new Date(data.end_time);
+                        const now = new Date();
+                        const delay = endTime - now;
+                        setTimeout(fetchCurrentEvent, delay);
+                    } else {
+                        setTimeout(fetchCurrentEvent, 30000);  // Check every minute if no event is found
+                    }
+                });
+              fetch('/accepted')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('eventString2').innerText = data.event_string;
+                    if (data.end_time) {
+                        const endTime = new Date(data.end_time);
+                        const now = new Date();
+                        const delay = endTime - now;
+                        setTimeout(fetchCurrentEvent, delay);
+                    } else {
+                        setTimeout(fetchCurrentEvent, 30000);  // Check every minute if no event is found
+                    }
+                });
         }
 
         window.onload = fetchCurrentEvent;
@@ -27,5 +53,8 @@
 <body>
     <h1>Current Event</h1>
     <p id="eventString"></p>
+    <p id="eventString1"></p>
+    <p id="eventString2"></p>
+
 </body>
 </html>
