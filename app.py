@@ -126,13 +126,18 @@ def refusing():
 @app.route('/accepted')
 def accepted():
    try: 
-    return html("<br>".join(accept)) 
-   except Exception as me:
+    df = pd.DataFrame({i:j for i,j in enumerate(accept[-5:])})
+    html_table = df.to_html(classes='dataframe', border=1, index=False)
+    
+    return jsonify({'table': html_table})    except Exception as me:
        return str(me)          
 @app.route('/refused')
 def refused():
    try: 
-    return html("<br>".join(refuse)) 
+    df = pd.DataFrame({i:j for i,j in enumerate(refuse[-5:])})
+    html_table = df.to_html(classes='dataframe', border=1, index=False)
+    
+    return jsonify({'table': html_table}) 
    except Exception as me:
        return str(me)       
 @app.route('/state')
@@ -194,7 +199,7 @@ def datas():
       else:
           ll[po].update({"prix":"","description":"","tel":"","address":""})
     # Convert data to a DataFrame and then to an HTML table
-    df = pd.DataFrame(list(locations.values()))
+    df = pd.DataFrame(ll)
     html_table = df.to_html(classes='dataframe', border=1, index=False)
     
     return jsonify({'table': html_table}) 
