@@ -159,6 +159,19 @@ window.geocodeAddress = function() {
                 var lng = results[0].geometry.location.lng();
                 document.getElementById('lat-input').value =  lat 
                 document.getElementById('lng-input').value = lng;
+                if (lastname.split("_")[0]+"_cible"+"_"+selectedValue in markers){
+                markers[lastname.split("_")[0]+"_cible"+"_"+selectedValue].setPosition({lat: lat, lng: lng });
+        }else{
+          markers[lastname.split("_")[0]+"_cible"+"_"+selectedValue] = new google.maps.Marker({
+            position: {lat: lat, lng: lng},
+            map: map,
+            title: lastname.split("_")[0]+"_cible"+"_"+selectedValue,
+                          icon: {
+                   url: 'https://apit24.onrender.com/static/logo.jpg', // URL to your image
+        scaledSize: new google.maps.Size(40, 40) 
+            }
+                
+});}
             } else {
                 alert('Geocode was not successful for the following reason: ' + status);
             }
