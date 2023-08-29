@@ -129,7 +129,8 @@ def accepted():
     df = pd.DataFrame({i:j for i,j in enumerate(accept[-5:])})
     html_table = df.to_html(classes='dataframe', border=1, index=False)
     
-    return jsonify({'table': html_table})    except Exception as me:
+    return jsonify({'table': html_table})    
+   except Exception as me:
        return str(me)          
 @app.route('/refused')
 def refused():
