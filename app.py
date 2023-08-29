@@ -3,6 +3,11 @@ from flask import jsonify
 from flask_socketio import SocketIO
 import traceback
 import pandas as pd
+from datetime import datetime
+def log(message):
+    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    return f"[{current_time}] {message}"
+
 app = Flask(__name__)
 active= {}  
 locations = {}  # List to store locations
@@ -10,6 +15,8 @@ prde={}
 location_id = 0  # Unique ID for each location
 rings=[]
 erros=[]
+accept=[]
+refuse=[]
 @app.route('/errors')
 def eroring():
     return str(erros)
@@ -87,7 +94,35 @@ def indexl():
    try: 
     return jsonify({"locations": list(locations.values())})
    except Exception as me:
-       return str(me)    
+       return str(me)  
+@app.route('/accept')
+def state():
+   try: 
+    name = request.args.get('name')
+    accept.append(log(name+"accepted")) 
+    return "done"   
+   except Exception as me:
+       return str(me)   
+@app.route('/refuse')
+def refuse():
+   try: 
+    name = request.args.get('name')
+    refuse.append(log(name+"refused")) 
+    return "done"   
+   except Exception as me:
+       return str(me)  
+@app.route('/accepted')
+def refused():
+   try: 
+    return "<br>".join(accept) 
+   except Exception as me:
+       return str(me)          
+@app.route('/refused')
+def refused():
+   try: 
+    return "<br>".join(refuse) 
+   except Exception as me:
+       return str(me)       
 @app.route('/state')
 def state():
    try: 
