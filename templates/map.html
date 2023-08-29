@@ -105,6 +105,9 @@ Tel: <input type="text" id="tel-input" >
     
 Description: <textarea name="Text1" id="description-input" cols="40" rows="5"></textarea>
 Adresse:  <input id="address" type="text" placeholder="Enter an address">
+Propositions:    <div id="suggestions"></div>
+
+
 <button onclick="geocodeAddress()">Get Lat/Lng</button>
 
 Steps: <select id="numberSelect-input">
@@ -151,6 +154,34 @@ Steps: <select id="numberSelect-input">
         }
     }    
 var geocoder = new google.maps.Geocoder();
+function getAddressPropositions(address) {
+    if (!address) return;
+
+    geocoder.geocode({ 'address': address }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            displaySuggestions(results);
+        }
+    });
+}
+
+function displaySuggestions(results) {
+    let suggestionsDiv = document.getElementById('suggestions');
+    suggestionsDiv.innerHTML = ''; // Clear previous suggestions
+
+    results.forEach(result => {
+        let btn = document.createElement('button');
+        btn.innerText = result.formatted_address;
+        btn.onclick = function() {
+            document.getElementById('address').value = result.formatted_address;
+            suggestionsDiv.innerHTML = ''; // Clear suggestions after selection
+        };
+        suggestionsDiv.appendChild(btn);
+    });
+}
+
+
+
+    
 window.geocodeAddress = function() {
         var address = document.getElementById('address').value;
         geocoder.geocode({'address': address}, function(results, status) {
