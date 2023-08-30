@@ -137,7 +137,7 @@ Propositions:    <div style="min-height: 400px;" id="suggestions"></div>
             $.getJSON('/get-new-values', function(data) {
                 const select =$('#name-input');
                 select.empty();  // Clear current options
-                data.forEach(function(item) {
+                data.values.forEach(function(item) {
                     select.append($('<option>', {
                         value: item,
                         text: item
