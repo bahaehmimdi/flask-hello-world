@@ -46,6 +46,8 @@ def post_data():
     tel=   data.get('tel')
     address=   data.get('address')  
     prde[name]={"prix":prix,"description":description,"tel":tel,"address":address}
+    if not name in locations.keys():
+        prde[name]={"prix":prix,"description":description,"tel":tel,"address":address,"answer":"refused because offline"}
     # You can process the data here if needed
 
     # Return a response
