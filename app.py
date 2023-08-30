@@ -192,15 +192,17 @@ def askpos():
 def removing():
     try:
      name = request.args.get('name')  
-     del locations[name]
-     try:
+     kk=locations.keys()   
+     if name in kk:   
+      del locations[name]
+       
+     if name+"cible_1" in kk:
          del locations[name+"cible_1"]
-     except:
-         pass
-     try:
+
+     if name+"cible_2" in kk:
          del locations[name+"cible_2"]
-     except:
-         pass         
+ 
+     return "done"     
     except:
      return    str(traceback.format_exc())         
 @app.route('/datas')
