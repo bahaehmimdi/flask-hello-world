@@ -134,6 +134,23 @@ Propositions:    <div style="min-height: 400px;" id="suggestions"></div>
 
 
     <script>
+        function updateSelect() {
+            $.getJSON('/get-new-values', function(data) {
+                const select =document.getElementById('name-input');
+                select.empty();  // Clear current options
+                data.forEach(function(item) {
+                    select.append($('<option>', {
+                        value: item,
+                        text: item
+                    }));
+                });
+            });
+        }
+ 
+
+
+
+
       function myFunction(val) {
           document.getElementById('numberSelect-input').value=val
           selectedValue = val;
