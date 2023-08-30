@@ -224,7 +224,7 @@ def datas():
 def get_new_values():
   try:  
     # This is just a sample list. You can fetch this from a database or any other source.
-    new_values = list(locations.keys()) 
+    new_values = list(enumerate(list(locations.keys()))) 
     return jsonify(new_values)   
   except:
      return str(traceback.format_exc()) 
