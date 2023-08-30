@@ -97,7 +97,7 @@ select:focus {
 <div id="map" style="height: 500px; width: 100%;"></div>
  <input hidden type="text" id="lat-input">
  <input hidden type="text" id="lng-input">
-Name: <select name="dropdown" id="name-input">
+Name: <select name="dropdown" id="name-input" onfocus=" onclick="updateSelect()"">
             {% for item in my_list %}
                 <option value="{{ item }}">{{ item }}</option>
             {% endfor %}
