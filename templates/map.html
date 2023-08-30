@@ -95,8 +95,8 @@ select:focus {
 <body>
 
 <div id="map" style="height: 500px; width: 100%;"></div>
-Latitude: <input hidden type="text" id="lat-input">
-Longitude: <input hidden type="text" id="lng-input">
+ <input hidden type="text" id="lat-input">
+ <input hidden type="text" id="lng-input">
 Name: <select name="dropdown" id="name-input">
             {% for item in my_list %}
                 <option value="{{ item }}">{{ item }}</option>
@@ -114,7 +114,7 @@ Propositions:    <div style="min-height: 400px;" id="suggestions"></div>
 
 <button hidden onclick="geocodeAddress()">Get Lat/Lng</button>
 
-Steps: <select hidden id="numberSelect-input">
+ <select hidden id="numberSelect-input">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
