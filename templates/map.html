@@ -105,8 +105,8 @@ Prix: <input type="text" id="prix-input" >
 Tel: <input type="text" id="tel-input" >
     
 Description: <textarea name="Text1" id="description-input" cols="40" rows="5"></textarea>
-Adresse Depart :<input id="address1" type="text"  oninput="getAddressPropositions(this.value)"  onfocus="myFunction(1);" placeholder="Enter an address">
-Adresse Arrivé :<input id="address2" type="text"  oninput="getAddressPropositions(this.value)"  onfocus="myFunction(2);"placeholder="Enter an address">
+Adresse Depart :<input id="address1" type="text"  onchange="geocodeAddress()" oninput="getAddressPropositions(this.value)"  onfocus="myFunction(1);" placeholder="Enter an address">
+Adresse Arrivé :<input id="address2" type="text"  onchange="geocodeAddress()" oninput="getAddressPropositions(this.value)"  onfocus="myFunction(2);" placeholder="Enter an address">
     
 Propositions:    <div style="min-height: 400px;" id="suggestions"></div>
 
