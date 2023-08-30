@@ -193,6 +193,14 @@ def removing():
     try:
      name = request.args.get('name')  
      del locations[name]
+     try:
+         del locations[name+"cible_1"]
+     except:
+         pass
+     try:
+         del locations[name+"cible_2"]
+     except:
+         pass         
     except:
      return    str(traceback.format_exc())         
 @app.route('/datas')
