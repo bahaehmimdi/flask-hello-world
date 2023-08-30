@@ -222,8 +222,11 @@ def datas():
        return str(traceback.format_exc())
 @app.route('/get-new-values')
 def get_new_values():
+  try:  
     # This is just a sample list. You can fetch this from a database or any other source.
-    new_values = list(locations.keys())
-    return jsonify(new_values)     
+    new_values = list(locations.keys()) 
+    return jsonify(new_values)   
+  except:
+     return str(traceback.format_exc()) 
 if __name__ == '__main__':
     app.run(debug=True)
