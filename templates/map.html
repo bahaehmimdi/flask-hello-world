@@ -4,7 +4,6 @@
     <title>Google Maps with Flask</title>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB33ACVQvP1lE5gK5nnARM_VEmr0eSP_ic"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <meta http-equiv="refresh" content="120">
 
 <style>
     /* Base styling */
@@ -97,7 +96,7 @@ select:focus {
 <div id="map" style="height: 500px; width: 100%;"></div>
  <input hidden type="text" id="lat-input">
  <input hidden type="text" id="lng-input">
-Name: <select name="dropdown" id="name-input" onfocus=" onclick="updateSelect()"">
+Name: <select  id="name-input"  onfocus="updateSelect()"">
             {% for item in my_list %}
                 <option value="{{ item }}">{{ item }}</option>
             {% endfor %}
@@ -136,7 +135,7 @@ Propositions:    <div style="min-height: 400px;" id="suggestions"></div>
     <script>
         function updateSelect() {
             $.getJSON('/get-new-values', function(data) {
-                const select =document.getElementById('name-input');
+                const select =$('#name-input');
                 select.empty();  // Clear current options
                 data.forEach(function(item) {
                     select.append($('<option>', {
